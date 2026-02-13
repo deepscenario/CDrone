@@ -21,6 +21,18 @@ function setInterpolationImage(i) {
 
 
 $(document).ready(function() {
+    // BibTeX copy button
+    $(".bibtex-copy").on("click", function() {
+        var block = $(this).siblings("pre").find("code").text();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(block).then(function() {
+                var btn = $(".bibtex-copy");
+                btn.text("Copied!");
+                setTimeout(function() { btn.text("Copy"); }, 2000);
+            });
+        }
+    });
+
     // Check for click events on the navbar burger icon
     $(".navbar-burger").click(function() {
       // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
